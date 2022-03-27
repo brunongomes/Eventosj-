@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class guest extends Model
+class events extends Model
 {
-    protected $table = 'guests';
+    protected $table = 'events';
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['description', 'event_date', 'id_guest'];
 }
