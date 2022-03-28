@@ -2,20 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\events;
+use App\Http\Controllers\guests;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+//Routers for events
+Route::get('events', 'App\Http\Controllers\events@getAllevents');
+Route::get('events/{id}', 'App\Http\Controllers\events@getEvent');
+Route::post('events/create', 'App\Http\Controllers\events@createEvent');
+Route::put('events/{id}', 'App\Http\Controllers\events@updateEvent');
+Route::delete('events/{id}', 'App\Http\Controllers\events@deleteEvent');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get('/', 'ApiDash\HomeController@index');
+//Routers for guests
+Route::get('guests', 'App\Http\Controllers\guests@getAllguests');
+Route::get('guests/{id}', 'App\Http\Controllers\guests@getGuest');
+Route::post('guests/create', 'App\Http\Controllers\guests@createGuest');
+Route::put('guests/{id}', 'App\Http\Controllers\guests@updateGuest');
+Route::delete('guests/{id}', 'App\Http\Controllers\guests@deleteGuest');
+
