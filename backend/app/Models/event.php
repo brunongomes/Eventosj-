@@ -9,5 +9,5 @@ class event extends Model
 {
     protected $table = 'events';
 
-    protected $fillable = ['description', 'event_date', 'id_guest'];
+    protected $fillable = ['description', 'event_date'];
 }

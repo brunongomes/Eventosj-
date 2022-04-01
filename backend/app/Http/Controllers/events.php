@@ -17,7 +17,6 @@ class events extends Controller
         $event = new Event;
         $event->description = $request->description;
         $event->event_date = $request->event_date;
-        $event->id_guest = $request->id_guest;
         $event->save();
   
         return response()->json([
@@ -42,7 +41,6 @@ class events extends Controller
     
             $event->description = is_null($request->description) ? $event->description : $request->description;
             $event->event_date = is_null($request->event_date) ? $event->event_date : $request->event_date;
-            $event->id_guest = is_null($request->id_guest) ? $event->id_guest : $request->id_guest;
             $event->save();
     
             return response()->json([

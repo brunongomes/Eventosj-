@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->date('event_date');
-            $table->unsignedInteger('id_guest');
-            $table->foreign('id_guest')->references('id')->on('guests')->onDelete('cascade');
             $table->timestamps();
         });
     }
