@@ -13,6 +13,8 @@
         />
         <label>Confirmação de e-mail</label>
         <input id="email_confirm" type="text" placeholer="Digite seu e-mail novamente." v-model="guest.confirm"/>
+        <label>Evento</label>
+        <input type="text" placeholer="Digite um evento." v-model="guest.description_event" />
         <button class="waves-effect waves-light btn-small">
           Salvar<i class="material-icons left"></i>
         </button>
@@ -37,6 +39,7 @@ export default {
         name: "",
         email: "",
         confirm: "",
+        description_event: "",
       },
       guests: [],
       errors: [],

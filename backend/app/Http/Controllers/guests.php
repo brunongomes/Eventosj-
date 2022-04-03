@@ -17,6 +17,7 @@ class guests extends Controller
         $guest = new Guest;
         $guest->name = $request->name;
         $guest->email = $request->email;
+        $guest->description_event = $request->description_event;
         $guest->save();
   
         return response()->json([
@@ -27,6 +28,17 @@ class guests extends Controller
       public function getGuest($id) {
         if (Guest::where('id', $id)->exists()) {
             $guest = Guest::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($guest, 200);
+          } else {
+            return response()->json([
+              "message" => "Convidado não encontrado."
+            ], 404);
+          }
+      }
+
+      public function getEventDescription($description_event) {
+        if (Guest::where('description_event', $description_event)->exists()) {
+            $guest = Guest::where('description_event', $description_event)->get()->toJson(JSON_PRETTY_PRINT);
             return response($guest, 200);
           } else {
             return response()->json([
@@ -63,7 +75,7 @@ class guests extends Controller
             ], 202);
           } else {
             return response()->json([
-              "message" => "Convidado inexistente."
+              "message" => "Deletado com sucesso."
             ], 404);
           }
       }

@@ -15,7 +15,7 @@ Route::delete('events/{id}', 'App\Http\Controllers\events@deleteEvent');
 
 //Routers for guests
 Route::get('guests', 'App\Http\Controllers\guests@getAllguests');
-Route::get('guests/{id}', 'App\Http\Controllers\guests@getGuest');
+Route::get('guests/{description_event}', 'App\Http\Controllers\guests@getEventDescription');
 Route::post('guests/create', 'App\Http\Controllers\guests@createGuest');
 Route::put('guests/{id}', 'App\Http\Controllers\guests@updateGuest');
 Route::delete('guests/{id}', 'App\Http\Controllers\guests@deleteGuest');

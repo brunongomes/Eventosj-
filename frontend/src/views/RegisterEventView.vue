@@ -6,7 +6,8 @@
       <label>Descrição</label>
       <input type="text" placeholer="Digite a descrição do evento." v-model="event.description" />
       <label>Data</label>
-      <input type="date" placeholer="Digite a descrição do evento." v-model="event.event_date" />
+      <input id="event_date" type="date" placeholer="Digite a descrição do evento." v-model="event.event_date" />
+      <div class="buttonsConfig">
       <button class="waves-effect waves-light btn-small">
         Salvar<i class="material-icons left"></i>
       </button>
@@ -16,6 +17,7 @@
       >
         <i class="material-icons">Cancelar</i>
       </button>
+      </div>
     </form>
     </ul>
   </div>
@@ -25,7 +27,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "@/components/HelloWorld.vue";
 
-import Event from "../services/guests";
+import Event from "../services/events";
 export default {
   data() {
     return {
@@ -40,14 +42,16 @@ export default {
   },
 
   methods: {
+    
     registerEvent() {
       Event.registerEvent(this.event)
         .then((resposta) => {
           this.event = {};
-          alert("Salvo com sucesso!");
+          alert("Evento cadastrado com sucesso!");
         })
         .catch((e) => {
           this.errors = e.response.data.errors;
+          alert("Não é possível cadastrar, já possui um evento cadastrado em: " + event_date.value)
         });
     },
   },
@@ -61,5 +65,12 @@ export default {
   width: 50vw;
   justify-content: space-around;
   margin-top: 30px;
+}
+
+.buttonsConfig {
+  display: flex;
+  width: 20vw;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 </style>

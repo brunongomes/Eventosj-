@@ -2,8 +2,9 @@
   <div class="container">
     <H3>LISTA DE EVENTOS:</H3>
 
-    <a class="waves-effect waves-light btn-small" href="/registerEvent">Cadastrar novo evento</a>
-
+    <a class="waves-effect waves-light btn-small blue" href="/registerEvent"
+      >Criar evento</a
+    >
     <table>
       <thead>
         <tr>
@@ -29,8 +30,9 @@
             >
               <i class="material-icons">Excluir</i>
             </button>
-            <a class="waves-effect btn-small green darken-1" href="/guest">Convidados</a>
-            
+            <a class="waves-effect btn-small green darken-1" href="/guest"
+              >Convidados</a
+            >
           </td>
         </tr>
       </tbody>
@@ -39,7 +41,8 @@
 </template>
 
 <script>
-import Event from "../services/guests";
+import Event from "../services/events";
+import Guest from "../services/events";
 
 import { RouterLink, RouterView } from "vue-router";
 
@@ -51,9 +54,31 @@ export default {
   },
 
   mounted() {
-    Event.eventList().then((resposta) => {
+    this.list();
+
+  },
+
+  methods: {
+    list(){
+          Event.eventList().then((resposta) => {
       this.events = resposta.data;
     });
+    },
+
+    remover(event) {
+      if (confirm("Deseja excluir o convidado?")) {
+        Event.deletEvent(event)
+          .then((resposta) => {
+            this.list();
+            this.errors = [];
+            alert("Evento excluído com sucesso.");
+          })
+          .catch((e) => {
+            this.errors = e.response.data.errors;
+            alert("Não é possível excluir. Esse evento possui convidados.");
+          });
+      }
+    },
   },
 };
 </script>

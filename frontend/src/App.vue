@@ -1,6 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -10,6 +9,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/event">Eventos</RouterLink></li>
+        <li><RouterLink to="/guest">Convidados</RouterLink></li>
       </ul>
     </div>
   </nav>
@@ -17,5 +17,4 @@ import HelloWorld from '@/components/HelloWorld.vue'
 </template>
 
 <style>
-
 </style>

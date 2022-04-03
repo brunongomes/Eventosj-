@@ -1,10 +1,10 @@
 import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div class="container">
-    <H3>CADASTRO DE CONVIDADOS</H3>
+    <H3>LISTA DE CONVIDADOS</H3>
 
     <a class="waves-effect waves-light btn-small blue" href="/registerGuest">
-      Incluir um novo convidado
+      Incluir convidado
     </a>
 
     <table>
@@ -12,6 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <tr>
           <th>Nome</th>
           <th>E-mail</th>
+          <th>Evento</th>
         </tr>
       </thead>
 
@@ -19,7 +20,16 @@ import { RouterLink, RouterView } from 'vue-router'
         <tr v-for="guest of guests" :key="guest.id">
           <td>{{ guest.name }}</td>
           <td>{{ guest.email }}</td>
+          <td>{{ guest.description_event }}</td>
           <td class="buttons">
+            <a href="/registerGuest">Editar </a>
+            <button
+              @click="editar(guest)" 
+              class="waves-effect btn-small blue darken-1"
+            >
+              <i class="material-icons">Editar</i>
+            
+            </button>
             <button
               @click="remover(guest)"
               class="waves-effect btn-small red darken-1"
@@ -35,6 +45,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <script>
 import Guest from "../services/guests";
+import description_event from "./EventView.vue";
 
 export default {
   data() {
@@ -50,9 +61,32 @@ export default {
   },
 
   methods: {
-    
-    
-  }
+    listar() {
+      Guest.guestList(guest.description_event).then((resposta) => {
+        this.guest = resposta.data;
+      });
+    },
+
+    remover(guest) {
+      if (confirm("Deseja excluir o convidado?")) {
+        Guest.deletGuest(guest)
+          .then((resposta) => {
+            this.listar();
+            this.errors = [];
+          })
+          .catch((e) => {
+            this.errors = e.response.data.errors;
+          });
+      }
+    },
+
+    editar(guest) {
+      console.log(guest.name)
+      console.log(guest.email)
+      console.log(guest.description_event)
+      this.guest = guest;
+    },
+  },
 };
 </script>
 
