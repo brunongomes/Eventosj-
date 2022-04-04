@@ -5,10 +5,6 @@ export default {
         return http.get('events')
     },
 
-    eventListGuest: () => {
-        return http.get('guests/Show')
-    },
-
     registerEvent: (event) => {
         return http.post('events/create', event)
     },

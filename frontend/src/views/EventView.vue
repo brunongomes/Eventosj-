@@ -30,9 +30,9 @@
             >
               <i class="material-icons">Excluir</i>
             </button>
-            <a class="waves-effect btn-small green darken-1" href="/guest"
-              >Convidados</a
-            >
+            <a @click="visualizar(event)" class="waves-effect btn-small green darken-1" href="/guest">
+            Convidados
+            </a>
           </td>
         </tr>
       </tbody>
@@ -60,13 +60,13 @@ export default {
 
   methods: {
     list(){
-          Event.eventList().then((resposta) => {
+      Event.eventList().then((resposta) => {
       this.events = resposta.data;
     });
     },
 
     remover(event) {
-      if (confirm("Deseja excluir o convidado?")) {
+      if (confirm("Deseja excluir o convidado?")) {        
         Event.deletEvent(event)
           .then((resposta) => {
             this.list();
