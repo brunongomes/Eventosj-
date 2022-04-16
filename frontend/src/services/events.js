@@ -11,5 +11,9 @@ export default {
 
     deletEvent: (event) =>{
         return http.delete('/events/' + event.id, {data: event});
-    }
+    },
+
+    updateEvent: (event) => {
+        return http.put('/events/' + event.id, event);
+    },
 }
