@@ -51,29 +51,45 @@
             >
               <i class="material-icons">Excluir</i>
             </button>
-            <a
-              @click="visualizar(event)"
+
+            <button
               class="waves-effect btn-small green darken-1"
-              href="/GuestOfEvents"
+              id="show-modal"
+              @click="showModal = true, desc = event.description"
             >
               Convidados
-            </a>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <Teleport to="body">
+      <!-- use the modal component, pass in the prop -->
+      <modal :show="showModal" @close="showModal = false">
+        <template #header>
+          <H3>Lista de convidados do evento: {{ desc }}</H3>
+        </template>
+      </modal>
+    </Teleport>
   </div>
 </template>
 
 <script>
 import Event from "../services/events";
 import Guest from "../services/events";
+import Modal from "./Modal.vue";
 
 import { RouterLink, RouterView } from "vue-router";
 
 export default {
+  components: {
+    Modal,
+  },
   data() {
     return {
+      showModal: false,
+      desc: "",
       event: {
         id: "",
         description: "",
@@ -98,12 +114,6 @@ export default {
 
     list() {
       Event.eventList().then((resposta) => {
-        this.events = resposta.data;
-      });
-    },
-
-    visualizar(event) {
-      Guest.guestListEvent(event.description).then((resposta) => {
         this.events = resposta.data;
       });
     },
@@ -137,7 +147,6 @@ export default {
 
     editar(event) {
       this.event = event;
-      console.log(event.description);
     },
 
     remover(event) {

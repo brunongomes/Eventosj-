@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <H3>Lista de convidados:</H3>
+    <H3>Lista de convidados do evento</H3>
     <table class="borda">
       <thead>
         <tr>
@@ -23,7 +23,6 @@
 
 <script>
 import Guest from "../services/guests";
-import description from "./EventView.vue";
 
 export default {
   data() {
@@ -46,6 +45,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

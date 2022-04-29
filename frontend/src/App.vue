@@ -18,33 +18,47 @@ import { RouterLink, RouterView } from "vue-router";
 
     <div>
       <footer class="page-footer blue">
-                  <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">EventosJá</h5>
-                <p class="grey-text text-lighten-4">Página destinada ao cadastro de eventos e convidados.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Redes sociais</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                </ul>
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">EventosJá</h5>
+              <p class="grey-text text-lighten-4">
+                Página destinada ao cadastro de eventos e convidados.
+              </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Redes sociais</h5>
+              <ul>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://www.instagram.com/"
+                    >Instagram</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://pt-br.facebook.com/"
+                    >Facebook</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
 
-          <div class="footer-copyright">
-            <div class="container">
+        <div class="footer-copyright">
+          <div class="container">
             © Copyright 2022 - Bruno Gomes
-            <a class="grey-text text-lighten-4 right" href="https://privacidade.globo.com/privacy-policy/">política de privacidade</a>
-            </div>
+            <a
+              class="grey-text text-lighten-4 right"
+              href="https://policies.google.com/privacy?hl=pt-BR"
+              >política de privacidade</a
+            >
           </div>
+        </div>
       </footer>
     </div>
   </div>
 </template>
-
-<style>
-</style>

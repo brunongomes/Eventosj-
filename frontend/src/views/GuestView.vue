@@ -1,42 +1,28 @@
 <template>
   <div class="container">
-    <h3>Cadastro/Edição de convidados:</h3>
+    <div>
+      <h3>Cadastro/Edição de convidados:</h3>
+    </div>
     <ul>
       <form @submit.prevent="registerGuest">
         <label>Nome</label>
         <input type="text" placeholer="Digite seu nome." v-model="guest.name" />
         <label>E-mail</label>
-        <input
-          id="email"
-          type="text"
-          placeholer="Digite seu e-mail."
-          v-model="guest.email"
-        />
+        <input id="email" type="text" placeholer="Digite seu e-mail." v-model="guest.email" />
         <label>Confirmação de e-mail</label>
-        <input
-          id="email_confirm"
-          type="text"
-          placeholer="Digite seu e-mail novamente."
-          v-model="guest.email_confirm"
-        />
-        <label>Selecione um evento</label>
-
-        <select v-model="selecionar.events">
-          <option value= disabled selected>Selecione um evento</option>
-          <option
-            v-for="event in events"
-            :key="event.id"
-            :value="event.description"
-            :v-model="guest.description_event"
-          >
-            {{ event.description }}
-          </option>
-        </select>
-
-        <button
-          @click="salvar(guest)"
-          class="waves-effect btn-small blue darken-1"
-        >
+        <input id="email_confirm" type="text" placeholer="Digite seu e-mail novamente." v-model="guest.email_confirm" />
+        <label>Selecione um evento na lista de eventos cadastrados</label>
+        <div>
+          <select>
+            <option value="" disabled selected>Selecione um evento</option>
+            <option v-for="event in events" :key="event.id" :value="event.description">
+              {{ event.description }}
+            </option>
+          </select>
+        </div>
+        <label>Digite o evento selecionado acima para confirmar.</label>
+        <input type="text" placeholer="Digite o evento." v-model="guest.description_event"/>
+        <button @click="salvar(guest)" class="waves-effect btn-small blue darken-1">
           <i class="material-icons">Salvar</i>
         </button>
       </form>
@@ -58,16 +44,10 @@
           <td>{{ guest.email }}</td>
           <td>{{ guest.description_event }}</td>
           <td class="buttons">
-            <button
-              @click="editar(guest)"
-              class="waves-effect btn-small blue darken-1"
-            >
+            <button @click="editar(guest)" class="waves-effect btn-small blue darken-1">
               <i class="material-icons">Editar</i>
             </button>
-            <button
-              @click="remover(guest)"
-              class="waves-effect btn-small red darken-1"
-            >
+            <button @click="remover(guest)" class="waves-effect btn-small red darken-1">
               <i class="material-icons">Deletar</i>
             </button>
           </td>
@@ -84,14 +64,6 @@ import Event from "../services/events";
 export default {
   data() {
     return {
-      event: {
-        id: "",
-        description: "",
-        event_date: "",
-      },
-      selecionar: {
-        events: [],
-      },
       guest: {
         id: "",
         name: "",
@@ -100,29 +72,28 @@ export default {
       },
       guests: [],
       errors: [],
-      selected: null,
     };
   },
 
   mounted() {
+    this.getEvents();
+
     Guest.guestList().then((resposta) => {
       this.guests = resposta.data;
     });
   },
 
   updated() {
-    Event.eventList().then((resposta) => {
-      this.events = resposta.data;
-      console.log(this.events);
-    });
-
-    $(document).ready(function () {
-      $("select").material_select();
-    });
+    this.activeSelect();
   },
-  
 
   methods: {
+    activeSelect() {
+      $(document).ready(function () {
+        $("select").material_select();
+      });
+    },
+
     getEvents() {
       Event.eventList().then((resposta) => {
         this.events = resposta.data;
@@ -146,6 +117,9 @@ export default {
             })
             .catch((e) => {
               this.errors = e.response.data.errors;
+              alert(
+                "Confira se a confirmação de evento corresponde ao evento selecionado."
+              );
             });
         } else {
           Guest.updateGuest(this.guest)
