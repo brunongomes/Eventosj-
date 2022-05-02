@@ -11,16 +11,15 @@
         <input id="email" type="text" placeholer="Digite seu e-mail." v-model="guest.email" />
         <label>Confirmação de e-mail</label>
         <input id="email_confirm" type="text" placeholer="Digite seu e-mail novamente." v-model="guest.email_confirm" />
-        <label>Selecione um evento na lista de eventos cadastrados</label>
         <div>
-          <select>
-            <option value="" disabled selected>Selecione um evento</option>
+          <v-select>
+            <option value="" disabled selected>Eventos disponíveis:</option>
             <option v-for="event in events" :key="event.id" :value="event.description">
               {{ event.description }}
             </option>
-          </select>
+          </v-select>
         </div>
-        <label>Digite o evento selecionado acima para confirmar.</label>
+        <label>Digite o evento para confirmar.</label>
         <input type="text" placeholer="Digite o evento." v-model="guest.description_event"/>
         <button @click="salvar(guest)" class="waves-effect btn-small blue darken-1">
           <i class="material-icons">Salvar</i>
@@ -117,9 +116,7 @@ export default {
             })
             .catch((e) => {
               this.errors = e.response.data.errors;
-              alert(
-                "Confira se a confirmação de evento corresponde ao evento selecionado."
-              );
+              alert("Confira o evento digitado, se corresponde a um dos eventos existentes ou não está em branco");
             });
         } else {
           Guest.updateGuest(this.guest)

@@ -68,7 +68,7 @@
       <!-- use the modal component, pass in the prop -->
       <modal :show="showModal" @close="showModal = false">
         <template #header>
-          <H3>Lista de convidados do evento: {{ desc }}</H3>
+          <H3>Lista de convidados do evento: {{event.description}}</H3>
         </template>
       </modal>
     </Teleport>
@@ -77,10 +77,7 @@
 
 <script>
 import Event from "../services/events";
-import Guest from "../services/events";
-import Modal from "./Modal.vue";
-
-import { RouterLink, RouterView } from "vue-router";
+import Modal from "./GuestOfEvents.vue";
 
 export default {
   components: {
@@ -89,7 +86,7 @@ export default {
   data() {
     return {
       showModal: false,
-      desc: "",
+      desc: '',
       event: {
         id: "",
         description: "",
