@@ -195,7 +195,7 @@ export default {
 
 .borda {
   width: 800px;
-  height: 400px;
+  height: 100px;
   border: solid 1px;
   border-radius: 5px 5px 5px 5px;
 }
