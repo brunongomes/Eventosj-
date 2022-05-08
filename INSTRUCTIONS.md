@@ -1,6 +1,16 @@
 Instruções para executar o projeto
-Para executar o projeto para instalar as ferramentas e preparar o ambiente de desenvolvimento, eu utilizei e indico o vscode como editor para execução:
+Instalar xampp, em seguida composer, iniciar o servidor do banco da dados mysql e o apache. 
 
+-Acessar a pasta backend e executar o comando: 
+php artisan serve
+
+-Acessar a pasta frontend e executar o comando: 
+run npm dev
+
+Acessar a aba eventos da tela inicial cadastrar os eventos, depois acessar a tela de convidados e realizar os cadastros.
+É importante fazer dessa maneira, pois cada convidado será vinculado a um evento posteriormente.
+
+Ferramentas utilizadas:
 frontend:
 vuejs: https://vuejs.org/
 materizalize: https://materializecss.com/
@@ -11,10 +21,6 @@ xampp: https://www.apachefriends.org/pt_br/index.html
 composer: https://getcomposer.org/
 banco de dados: mysql
 insomnia: https://insomnia.rest/
-
-Após a instalação:
-acessar a pasta frontend e executar o comando: run npm dev
-acessar a pasta backend e executar o comando: php artisan serve
 
 Sobre o projeto:
 Iniciei o projeto no backend, primeiro criei um banco de dados chamado eventosja, onde criei duas tabelas, a tabela events com duas colunas, "description"(chave primária) para descrição do evento e "event_date" para inserção das datas. Em seguida, criei a tabela guests para cadastro de convidados, que possui os campos name, email e description_event como chave estrangeira, onde serão inseridos os eventos. 

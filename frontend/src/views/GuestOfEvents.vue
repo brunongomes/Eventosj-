@@ -1,46 +1,48 @@
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-header">
-            <slot name="header">default header</slot>
-          </div>
+    <div class="container">
+      <div class="scroller">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-header">
+              <slot name="header">default header</slot>
+            </div>
 
-          <div class="modal-body">
-            <table class="borda">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>Evento</th>
-                </tr>
-              </thead>
+            <div class="modal-body">
+              <table class="borda">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Evento</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                <tr v-for="guest of guests" :key="guest.id">
-                  <td>{{ guest.name }}</td>
-                  <td>{{ guest.email }}</td>
-                  <td>{{ guest.description_event }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <slot name="body">default body</slot>
-            <div>{{ desc }} {{ show }}</div>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              <button
-                class="waves-effect btn-small blue darken-1"
-                @click="$emit('close')"
-              >
-                Fechar
-              </button>
-            </slot>
+                <tbody>
+                  <tr v-for="guest of guests" :key="guest.id">
+                    <td>{{ guest.name }}</td>
+                    <td>{{ guest.email }}</td>
+                    <td>{{ guest.description_event }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="modal-footer">
+              <slot name="footer">
+                <button class="waves-effect btn-small red darken-1" @click="$emit('close')">
+                  Fechar
+                </button>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </Transition>
 </template>
@@ -72,7 +74,7 @@ export default {
 
   methods: {
     selectGuests() {
-      Guest.guestListEvent(Event.data().event.description).then((resposta) => {
+      Guest.guestListEvent(Event.data().desc).then((resposta) => {
         this.guests = resposta.data;
       });
     },
@@ -81,6 +83,13 @@ export default {
 </script>
 
 <style>
+.scroller {
+  width: 900px;
+  height: 700px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -120,15 +129,6 @@ export default {
 .modal-default-button {
   float: right;
 }
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter-from {
   opacity: 0;

@@ -10,7 +10,9 @@
     "axios": "^0.26.1",
     "materialize-css": "^1.0.0-rc.2",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.13"
+    "vue-custom-scrollbar": "^1.4.4",
+    "vue-router": "^4.0.13",
+    "vue-scrollbar": "^1.0.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.2",

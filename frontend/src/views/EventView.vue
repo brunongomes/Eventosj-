@@ -55,7 +55,7 @@
             <button
               class="waves-effect btn-small green darken-1"
               id="show-modal"
-              @click="showModal = true, desc = event.description"
+              @click="showModal = true, selectDesc(event)"
             >
               Convidados
             </button>
@@ -68,7 +68,7 @@
       <!-- use the modal component, pass in the prop -->
       <modal :show="showModal" @close="showModal = false">
         <template #header>
-          <H3>Lista de convidados do evento: {{event.description}}</H3>
+          <H3>Lista de convidados do evento: {{ event.description }}</H3>
         </template>
       </modal>
     </Teleport>
@@ -85,8 +85,8 @@ export default {
   },
   data() {
     return {
+      desc: "",
       showModal: false,
-      desc: '',
       event: {
         id: "",
         description: "",
@@ -102,7 +102,12 @@ export default {
     this.activeSelect();
   },
 
-  methods: {
+  methods: {   
+    selectDesc(event) {
+      this.event = event;
+      this.desc = event.description;
+    },
+
     activeSelect() {
       $(document).ready(function () {
         $("select").material_select();
@@ -170,7 +175,7 @@ export default {
   width: 30vw;
   justify-content: space-around;
   margin-top: 20px;
-}
+} 
 
 .borda {
   width: 800px;

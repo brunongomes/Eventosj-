@@ -8,20 +8,41 @@
         <label>Nome</label>
         <input type="text" placeholer="Digite seu nome." v-model="guest.name" />
         <label>E-mail</label>
-        <input id="email" type="text" placeholer="Digite seu e-mail." v-model="guest.email" />
+        <input
+          id="email"
+          type="text"
+          placeholer="Digite seu e-mail."
+          v-model="guest.email"
+        />
         <label>Confirmação de e-mail</label>
-        <input id="email_confirm" type="text" placeholer="Digite seu e-mail novamente." v-model="guest.email_confirm" />
+        <input
+          id="email_confirm"
+          type="text"
+          placeholer="Digite seu e-mail novamente."
+          v-model="guest.email_confirm"
+        />
         <div>
           <v-select>
             <option value="" disabled selected>Eventos disponíveis:</option>
-            <option v-for="event in events" :key="event.id" :value="event.description">
+            <option
+              v-for="event in events"
+              :key="event.id"
+              :value="event.description"
+            >
               {{ event.description }}
             </option>
           </v-select>
         </div>
         <label>Digite o evento para confirmar.</label>
-        <input type="text" placeholer="Digite o evento." v-model="guest.description_event"/>
-        <button @click="salvar(guest)" class="waves-effect btn-small blue darken-1">
+        <input
+          type="text"
+          placeholer="Digite o evento."
+          v-model="guest.description_event"
+        />
+        <button
+          @click="salvar(guest)"
+          class="waves-effect btn-small blue darken-1"
+        >
           <i class="material-icons">Salvar</i>
         </button>
       </form>
@@ -43,10 +64,16 @@
           <td>{{ guest.email }}</td>
           <td>{{ guest.description_event }}</td>
           <td class="buttons">
-            <button @click="editar(guest)" class="waves-effect btn-small blue darken-1">
+            <button
+              @click="editar(guest)"
+              class="waves-effect btn-small blue darken-1"
+            >
               <i class="material-icons">Editar</i>
             </button>
-            <button @click="remover(guest)" class="waves-effect btn-small red darken-1">
+            <button
+              @click="remover(guest)"
+              class="waves-effect btn-small red darken-1"
+            >
               <i class="material-icons">Deletar</i>
             </button>
           </td>
@@ -110,13 +137,17 @@ export default {
         if (!this.guest.id) {
           Guest.registerGuest(this.guest)
             .then((resposta) => {
-              this.list();
+              Guest.guestList().then((resposta) => {
+                this.guests = resposta.data;
+              });
               this.guest = {};
               alert("Cadastro salvo com sucesso!");
             })
             .catch((e) => {
               this.errors = e.response.data.errors;
-              alert("Confira o evento digitado, se corresponde a um dos eventos existentes ou não está em branco");
+              alert(
+                "Confira o evento digitado, se corresponde a um dos eventos existentes.(Não pode estar em branco.)"
+              );
             });
         } else {
           Guest.updateGuest(this.guest)
