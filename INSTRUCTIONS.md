@@ -1,7 +1,11 @@
 Instruções para executar o projeto
+
 1)Instalar o xampp: https://www.apachefriends.org/pt_br/index.html
+
 2)Instalar o composer: https://getcomposer.org/
+
 3)Parte do backend:
+
 Abrir o Xampp e executar o apache e o mysql.
 Realizar o comando: git clone https://github.com/brunongomes/Eventosja.git
 Acessar a pasta eventosja
@@ -11,6 +15,7 @@ Instalar os pacotes do php: composer install
 Gerar chave para aplicatação: php artisan key:generate
 
 4)Parte do banco de dados
+
 Acessar pelo navegador: http://localhost/phpmyadmin/index.php 
 Criar um novo banco com as informações:
 Nome da base de dados: Eventosja
@@ -20,9 +25,12 @@ Executar as migrations para criar as tabelas: php artisan migrate
 
 Iniciar o backend: php artisan serve
 
+
 5)Parte do frontend:
+
 Instalar os componentes: npm install
 Iniciar o fronteend: npm run dev
+
 
 Ferramentas utilizadas:
 frontend:
