@@ -167,6 +167,7 @@ export default {
 
     editar(guest) {
       this.guest = guest;
+      alert("Não é permitido alterar o e-mail, apenas informe a confirmação igual ao e-mail original.");
     },
 
     remover(guest) {
