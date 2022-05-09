@@ -31,7 +31,7 @@ Iniciar o backend: php artisan serve
 Instalar os componentes: npm install
 Iniciar o fronteend: npm run dev
 
-
+Observação: É preciso cadastrar primeiro evento e depois convidados, pois para cadastro dos convidados é obrigatório informar um evento.
 
 Ferramentas utilizadas:
 
